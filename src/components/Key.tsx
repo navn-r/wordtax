@@ -2,12 +2,19 @@ import { Grid, Text } from '@chakra-ui/react';
 
 interface KeyProps {
   char?: string;
+  color?: number;
 }
 
-const Key = ({ char }: KeyProps) => {
+const Key = ({ char, color = -1 }: KeyProps) => {
   return (
     <Grid
-      bg={char ? 'gray.200' : 'white'}
+      bg={
+        char
+          ? color !== -1
+            ? ['gray.400', 'yellow.300', 'green.400'][color]
+            : 'gray.200'
+          : 'white'
+      }
       height='2.75rem'
       width='2.75rem'
       placeItems={'center'}

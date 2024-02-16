@@ -2,7 +2,7 @@ import { Flex, SimpleGrid } from '@chakra-ui/react';
 import Key from './Key';
 
 interface BoardProps {
-  guesses: string[];
+  guesses: [string, number[]][];
   text: string;
 }
 
@@ -15,8 +15,12 @@ export default function Board({ guesses, text }: BoardProps) {
         spacingX={'0.5rem'}
         width={'max-content'}
       >
-        {guesses.map((g) =>
-          g.split('').map((c, i) => <Key key={`${g}-${i}`} char={c} />)
+        {guesses.map(([guess, score]) =>
+          guess
+            .split('')
+            .map((c, i) => (
+              <Key key={`${guess}-${i}`} char={c} color={score[i]} />
+            ))
         )}
         {text.split('').map((c, index) => (
           <Key key={index} char={c} />

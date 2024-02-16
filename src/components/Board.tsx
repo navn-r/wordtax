@@ -1,8 +1,12 @@
-import { Box, Flex, SimpleGrid } from '@chakra-ui/react';
+import { Flex, SimpleGrid } from '@chakra-ui/react';
+import Key from './Key';
 
-const BOARD = Array.from({ length: 5 * 6 });
+interface BoardProps {
+  guesses: string[];
+  text: string;
+}
 
-export default function Board() {
+export default function Board({ guesses, text }: BoardProps) {
   return (
     <Flex justifyContent={'center'} alignItems={'center'}>
       <SimpleGrid
@@ -11,9 +15,17 @@ export default function Board() {
         spacingX={'0.5rem'}
         width={'max-content'}
       >
-        {BOARD.map((_, index) => (
-          <Box key={index} bg='gray.200' height='4rem' width='4rem' />
+        {guesses.map((g) =>
+          g.split('').map((c, i) => <Key key={`${g}-${i}`} char={c} />)
+        )}
+        {text.split('').map((c, index) => (
+          <Key key={index} char={c} />
         ))}
+        {Array.from({ length: 5 * (6 - guesses.length) - text.length }).map(
+          (_, index) => (
+            <Key key={index} />
+          )
+        )}
       </SimpleGrid>
     </Flex>
   );

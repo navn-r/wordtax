@@ -1,4 +1,5 @@
-import { Flex, Center, Grid, GridItem, Heading, Image } from '@chakra-ui/react';
+import { Center, Flex, Grid, GridItem, Heading, Image } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 
@@ -29,7 +30,45 @@ const Header = () => {
   );
 };
 
+const updateText = (text: string, { key, code }: KeyboardEvent) => {
+  if (code === 'Backspace') {
+    if (text.length === 0) {
+      return text;
+    }
+
+    return text.slice(0, text.length - 1);
+  }
+
+  // check if the key is a letter
+  if (text.length < 5 && code.includes('Key')) {
+    return text + key.toUpperCase();
+  }
+
+  return text;
+};
+
 function App() {
+  const [guesses, setGuesses] = useState<string[]>([]);
+  const [text, setText] = useState('');
+
+  const listener = (e: KeyboardEvent) => {
+    if (e.code === 'Enter' && guesses.length < 5 && text.length === 5) {
+      setGuesses((guesses) => [...guesses, text]);
+      setText('');
+      return;
+    }
+
+    setText((text) => updateText(text, e));
+  };
+
+  useEffect(() => {
+    window.addEventListener('keyup', listener);
+
+    return () => {
+      window.removeEventListener('keyup', listener);
+    };
+  }, [listener]);
+
   return (
     <>
       <Header />
@@ -42,7 +81,7 @@ function App() {
         mt={'clamp(1rem, 10vh, 10rem)'}
         gap={'clamp(1rem, 10vh, 10rem)'}
       >
-        <Board />
+        <Board text={text} guesses={guesses} />
         <Keyboard />
       </Flex>
     </>

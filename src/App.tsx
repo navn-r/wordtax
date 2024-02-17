@@ -4,11 +4,13 @@ import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import { GameProvider } from './components/useGameContext';
 import InstructionsModal from './components/InstructionsModal';
+import Overlay from './components/Overlay';
 
 function App() {
   return (
     <GameProvider>
       <Header />
+      <Overlay />
       <Flex
         flexDir={'column'}
         as={'main'}

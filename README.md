@@ -1,34 +1,32 @@
 # MPAC WordTax
 
-🧑‍🍳 cooking...
+In a recent round of negotiations with the Government of Ontario, MPAC has established a new system for the valuation of properties, **WordTax**!. Residents of Ontario will now be taxed based on whether they can guess the word of the day. The word of the day is a randomly generated word, and if the resident can guess it, they will be exempt from paying property taxes for the year.
+
+The rules are simple:
+
+- Each guess must be a valid 5-letter word
+- You have 6 tries to guess the word correctly
+- Input your guess using your keyboard and press the **Enter** key to submit
+
+If you fail to guess the word, **you will have to pay the WordTax!**
+
+<p align="center">
+<img width=886 src="./docs/walkthrough.gif">
+<span>Made with 💖 in 🍁</span>
+</p>
 
 ---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Development Setup
 
-Currently, two official plugins are available:
+Install dependencies:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+👉 pnpm i
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Run the app:
+
+```base
+👉 pnpm dev
+```

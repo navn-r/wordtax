@@ -1,12 +1,16 @@
 {
   "name": "wordtax",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": {
+    "name": "Navinn Ravindaran",
+    "url": "https://github.com/navn-r"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,13 +1,10 @@
 import { Flex, Grid, SimpleGrid, Spinner } from '@chakra-ui/react';
+import { useGameContext } from './useGameContext';
 import Key from './Key';
 
-interface BoardProps {
-  guesses: [string, number[]][];
-  isLoading: boolean;
-  text: string;
-}
+export default function Board() {
+  const { guesses, text, isLoading } = useGameContext();
 
-export default function Board({ guesses, text, isLoading }: BoardProps) {
   return (
     <Flex justifyContent={'center'} alignItems={'center'} position={'relative'}>
       {isLoading && (

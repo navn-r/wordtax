@@ -1,14 +1,31 @@
-import { Flex, SimpleGrid } from '@chakra-ui/react';
+import { Flex, Grid, SimpleGrid, Spinner } from '@chakra-ui/react';
 import Key from './Key';
 
 interface BoardProps {
   guesses: [string, number[]][];
+  isLoading: boolean;
   text: string;
 }
 
-export default function Board({ guesses, text }: BoardProps) {
+export default function Board({ guesses, text, isLoading }: BoardProps) {
   return (
-    <Flex justifyContent={'center'} alignItems={'center'}>
+    <Flex justifyContent={'center'} alignItems={'center'} position={'relative'}>
+      {isLoading && (
+        <Grid
+          position={'absolute'}
+          left={'24%'}
+          width={'16.25rem'}
+          height={'100%'}
+          bg={'rgba(0,0,0, 0.125)'}
+          zIndex={1}
+          backdropFilter={''}
+          borderRadius={'5px'}
+          placeItems={'center'}
+          boxShadow={'0 0 10px 5px rgba(0,0,0, 0.125)'}
+        >
+          <Spinner size='xl' thickness={'5px'} color={'white'} />
+        </Grid>
+      )}
       <SimpleGrid
         columns={5}
         spacingY={'0.5rem'}

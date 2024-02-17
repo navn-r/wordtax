@@ -1,11 +1,12 @@
-import { Flex, SimpleGrid } from '@chakra-ui/react';
+import { Button, ButtonGroup, Flex, SimpleGrid } from '@chakra-ui/react';
 import { useGameContext } from './useGameContext';
 import Key from './Key';
 
 const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
 
 export default function Keyboard() {
-  const { keyboardColors } = useGameContext();
+  const { keyboardColors, showInstructions, setShowInstructions, resetGame } =
+    useGameContext();
 
   return (
     <Flex
@@ -21,6 +22,14 @@ export default function Keyboard() {
           ))}
         </SimpleGrid>
       ))}
+      <ButtonGroup>
+        <Button colorScheme={'green'} onClick={() => setShowInstructions(true)}>
+          {showInstructions ? 'Hide' : 'Show'} Instructions
+        </Button>
+        <Button colorScheme={'red'} onClick={resetGame}>
+          Restart
+        </Button>
+      </ButtonGroup>
     </Flex>
   );
 }

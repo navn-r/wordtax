@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import { GameProvider } from './components/useGameContext';
+import InstructionsModal from './components/InstructionsModal';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Board />
         <Keyboard />
       </Flex>
+      <InstructionsModal />
     </GameProvider>
   );
 }

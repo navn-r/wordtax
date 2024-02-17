@@ -8,6 +8,9 @@ interface Game {
   isLoading: boolean;
   won: boolean;
   text: string;
+  showInstructions: boolean;
+  setShowInstructions: (show: boolean) => void;
+  resetGame: () => void;
 }
 
 type ValidateResponse =
@@ -71,10 +74,22 @@ export const GameProvider = ({ children }: GameProviderProps) => {
   const [keyboardColors, setKeyboardColors] = useState<Game['keyboardColors']>(
     {}
   );
+  const [showInstructions, setShowInstructions] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [won, setWon] = useState(false);
   const [text, setText] = useState('');
   const toast = useToast();
+
+  /**
+   * Reset the game state
+   */
+  const resetGame = () => {
+    setGuesses([]);
+    setKeyboardColors({});
+    setIsLoading(false);
+    setWon(false);
+    setText('');
+  };
 
   /**
    * Listen for keyboard events and update the text accordingly
@@ -149,7 +164,16 @@ export const GameProvider = ({ children }: GameProviderProps) => {
 
   return (
     <GameContext.Provider
-      value={{ guesses, keyboardColors, isLoading, won, text }}
+      value={{
+        guesses,
+        keyboardColors,
+        showInstructions,
+        setShowInstructions,
+        isLoading,
+        won,
+        text,
+        resetGame,
+      }}
     >
       {children}
     </GameContext.Provider>

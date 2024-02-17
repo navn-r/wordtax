@@ -2,18 +2,25 @@ import { Flex, SimpleGrid } from '@chakra-ui/react';
 import { useGameContext } from './useGameContext';
 import Key from './Key';
 
-const KEYS = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('');
+const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
 
 export default function Keyboard() {
   const { keyboardColors } = useGameContext();
 
   return (
-    <Flex justifyContent={'center'} alignItems={'center'}>
-      <SimpleGrid columns={10} spacingY={'1rem'} spacingX={'0.5rem'}>
-        {KEYS.map((c) => (
-          <Key key={c} char={c} color={keyboardColors?.[c]} />
-        ))}
-      </SimpleGrid>
+    <Flex
+      justifyContent={'center'}
+      alignItems={'center'}
+      flexDir={'column'}
+      gap={'1rem'}
+    >
+      {ROWS.map((row) => (
+        <SimpleGrid key={row} columns={row.length} spacingX={'0.5rem'}>
+          {row.split('').map((char) => (
+            <Key key={char} char={char} color={keyboardColors[char]} />
+          ))}
+        </SimpleGrid>
+      ))}
     </Flex>
   );
 }

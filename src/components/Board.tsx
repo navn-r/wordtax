@@ -4,6 +4,7 @@ import Key from './Key';
 
 export default function Board() {
   const { guesses, text, isLoading } = useGameContext();
+  const remainingKeys = 5 * (6 - guesses.length) - text.length;
 
   return (
     <Flex justifyContent={'center'} alignItems={'center'} position={'relative'}>
@@ -32,18 +33,16 @@ export default function Board() {
         {guesses.map(([guess, score]) =>
           guess
             .split('')
-            .map((c, i) => (
-              <Key key={`${guess}-${i}`} char={c} color={score[i]} />
+            .map((char, i) => (
+              <Key key={`${guess}-${i}`} char={char} color={score[i]} />
             ))
         )}
-        {text.split('').map((c, index) => (
-          <Key key={index} char={c} />
+        {text.split('').map((char, index) => (
+          <Key key={index} char={char} />
         ))}
-        {Array.from({ length: 5 * (6 - guesses.length) - text.length }).map(
-          (_, index) => (
-            <Key key={index} />
-          )
-        )}
+        {Array.from({ length: remainingKeys }).map((_, index) => (
+          <Key key={index} />
+        ))}
       </SimpleGrid>
     </Flex>
   );
